@@ -5,12 +5,19 @@ const heroSlides = document.querySelectorAll('.hero-slide');
 if (heroSlides.length > 1) {
   let heroCurrent = 0;
 
-  setInterval(function () {
-    heroSlides.forEach(function (slide) {
-      slide.classList.remove('active');
-    });
+  // Make sure the first slide is visible
+  heroSlides.forEach((slide, index) => {
+    slide.classList.toggle('active', index === 0);
+  });
 
-    heroCurrent = (heroCurrent + 1) % heroSlides.length;
+  setInterval(() => {
+    heroSlides[heroCurrent].classList.remove('active');
+
+    heroCurrent++;
+
+    if (heroCurrent >= heroSlides.length) {
+      heroCurrent = 0;
+    }
 
     heroSlides[heroCurrent].classList.add('active');
   }, 5000);
