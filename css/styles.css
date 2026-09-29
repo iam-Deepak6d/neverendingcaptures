@@ -105,7 +105,7 @@
     background: #090908;
   }
 }
-/* HERO SLIDESHOW - NO BLACK TRANSITION */
+/* HERO SLIDESHOW */
 .hero-slideshow {
   position: absolute;
   inset: 0;
@@ -123,18 +123,16 @@
   object-fit: cover;
   object-position: center center;
   opacity: 0;
-  visibility: hidden;
   z-index: 1;
-  transition: opacity 1.2s ease-in-out;
+  transition: opacity 1s ease-in-out;
 }
 
 .hero-slide.active {
   opacity: 1;
-  visibility: visible;
   z-index: 2;
 }
 
-/* MOBILE */
+/* MOBILE HERO */
 @media (max-width: 720px) {
   .hero-slide {
     object-fit: cover;
