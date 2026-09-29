@@ -3,22 +3,33 @@
 const heroSlides = document.querySelectorAll('.hero-slide');
 
 if (heroSlides.length > 1) {
+
   let heroCurrent = 0;
 
-  // Make sure the first slide is visible
+  // Preload all hero images
+  heroSlides.forEach((slide) => {
+    const preload = new Image();
+    preload.src = slide.src;
+  });
+
+  // Make sure only the first slide is active
   heroSlides.forEach((slide, index) => {
     slide.classList.toggle('active', index === 0);
   });
 
   setInterval(() => {
-    heroSlides[heroCurrent].classList.remove('active');
 
-    heroCurrent++;
+    const nextSlide =
+      (heroCurrent + 1) % heroSlides.length;
 
-    if (heroCurrent >= heroSlides.length) {
-      heroCurrent = 0;
-    }
+    // Show the next image first
+    heroSlides[nextSlide].classList.add('active');
 
-    heroSlides[heroCurrent].classList.add('active');
+    // Then remove the previous image
+    setTimeout(() => {
+      heroSlides[heroCurrent].classList.remove('active');
+      heroCurrent = nextSlide;
+    }, 1200);
+
   }, 5000);
 }
