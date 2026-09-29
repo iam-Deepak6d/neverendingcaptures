@@ -6,26 +6,21 @@ if (heroSlides.length > 1) {
 
   let heroCurrent = 0;
 
-  // Preload all hero images
-  heroSlides.forEach((slide) => {
-    const preload = new Image();
-    preload.src = slide.src;
-  });
-
-  // Make sure only the first slide is active
+  // Make sure the first photo is visible
   heroSlides.forEach((slide, index) => {
     slide.classList.toggle('active', index === 0);
   });
 
+  // Change photo every 3 seconds
   setInterval(() => {
 
     const nextSlide =
       (heroCurrent + 1) % heroSlides.length;
 
-    // Show the next image first
+    // Fade the next photo in first
     heroSlides[nextSlide].classList.add('active');
 
-    // Then remove the previous image
+    // Wait for the smooth fade before hiding the previous photo
     setTimeout(() => {
       heroSlides[heroCurrent].classList.remove('active');
       heroCurrent = nextSlide;
