@@ -105,13 +105,14 @@
     background: #090908;
   }
 }
-/* HERO SLIDESHOW */
+/* HERO SLIDESHOW - NO BLACK TRANSITION */
 .hero-slideshow {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
+  background: #090908;
 }
 
 .hero-slide {
@@ -122,24 +123,19 @@
   object-fit: cover;
   object-position: center center;
   opacity: 0;
+  visibility: hidden;
+  z-index: 1;
   transition: opacity 1.2s ease-in-out;
 }
 
 .hero-slide.active {
   opacity: 1;
+  visibility: visible;
+  z-index: 2;
 }
 
-/* MOBILE HERO */
+/* MOBILE */
 @media (max-width: 720px) {
-
-  .hero {
-    min-height: 720px;
-  }
-
-  .hero-slideshow {
-    height: 100%;
-  }
-
   .hero-slide {
     object-fit: cover;
     object-position: center center;
