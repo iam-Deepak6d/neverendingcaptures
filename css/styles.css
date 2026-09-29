@@ -300,3 +300,11 @@
     object-position: center 40%;
   }
 }
+@media (max-width: 720px) {
+  .hero-media .hero-slide {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+}
