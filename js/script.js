@@ -5,11 +5,23 @@ const heroSlides = document.querySelectorAll('.hero-slide');
 if (heroSlides.length > 1) {
   let heroCurrent = 0;
 
+  // Preload all hero images
+  heroSlides.forEach(slide => {
+    const img = new Image();
+    img.src = slide.src;
+  });
+
   setInterval(() => {
-    heroSlides[heroCurrent].classList.remove('active');
+    const nextSlide = (heroCurrent + 1) % heroSlides.length;
 
-    heroCurrent = (heroCurrent + 1) % heroSlides.length;
+    // Show next image first
+    heroSlides[nextSlide].classList.add('active');
 
-    heroSlides[heroCurrent].classList.add('active');
+    // Then hide the previous image
+    setTimeout(() => {
+      heroSlides[heroCurrent].classList.remove('active');
+      heroCurrent = nextSlide;
+    }, 1200);
+
   }, 5000);
 }
