@@ -105,3 +105,51 @@
     background: #090908;
   }
 }
+/* HERO SLIDESHOW */
+.hero-slideshow {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+/* MOBILE HERO */
+@media (max-width: 720px) {
+
+  .hero {
+    min-height: 720px;
+  }
+
+  .hero-slideshow {
+    height: 100%;
+  }
+
+  .hero-slide {
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .brand {
+    width: 145px;
+  }
+
+  .header {
+    height: 90px;
+  }
+}
