@@ -31,5 +31,5 @@ if (heroSlides.length > 1) {
       heroCurrent = nextSlide;
     }, 1200);
 
-  }, 5000);
+  }, 3000);
 }
