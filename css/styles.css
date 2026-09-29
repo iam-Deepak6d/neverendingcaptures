@@ -96,3 +96,12 @@
     object-position: center;
   }
 }
+
+/* MOBILE HERO FULL IMAGE FIX */
+@media (max-width: 720px) {
+  .hero-media img {
+    object-fit: contain;
+    object-position: center center;
+    background: #090908;
+  }
+}
