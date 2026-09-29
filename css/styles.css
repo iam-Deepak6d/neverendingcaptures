@@ -208,18 +208,18 @@
 
   /* Logo */
   .header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 92px;
-    padding: 18px 22px;
-    z-index: 10;
-  }
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 76px;
+  padding: 14px 20px;
+  z-index: 10;
+}
 
-  .brand {
-    width: 125px;
-  }
+.brand {
+  width: 92px;
+}
 
   /* Menu */
   .menu-toggle {
