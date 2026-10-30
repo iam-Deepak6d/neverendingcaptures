@@ -1,0 +1,30 @@
+NEVER ENDING CAPTURES — ASSET NOTES
+
+Brand:
+- assets/images/logo.png — updated supplied Never Ending Captures logo, cropped to remove excess white canvas
+
+Existing interior portfolio photographs:
+- assets/images/interior-01.jpg
+- assets/images/interior-02.jpg
+- assets/images/interior-03.jpg
+
+Original still frames extracted directly from the supplied 4K walkthrough video, then lightly enhanced:
+- assets/images/video-interior-03.jpg (source timestamp 00:03)
+- assets/images/video-interior-05.jpg (source timestamp 00:05)
+- assets/images/video-interior-08.jpg (source timestamp 00:08)
+- assets/images/video-interior-10.jpg (source timestamp 00:10)
+- assets/images/video-interior-13.jpg (source timestamp 00:13)
+- assets/images/video-interior-16.jpg (source timestamp 00:16)
+- assets/images/video-interior-20.jpg (source timestamp 00:20)
+- assets/images/video-interior-24.jpg (source timestamp 00:24)
+- assets/images/video-interior-28.jpg (source timestamp 00:28)
+- assets/images/video-interior-31.jpg (source timestamp 00:31)
+
+Hero poster:
+- assets/images/interior-hero.jpg
+
+Video:
+- assets/video/interior-showreel.mp4 (optimized 720p / 24fps / 12-second hero loop and film preview)
+
+Contact settings:
+- assets/js/config.js
