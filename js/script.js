@@ -1,30 +1,88 @@
-(()=>{const c=window.NEC_CONFIG||{};const y=document.getElementById('year');if(y)y.textContent=new Date().getFullYear();const w=document.getElementById('whatsappLink');if(w&&!String(c.whatsappNumber).includes('X')){w.href=`https://wa.me/${c.whatsappNumber}?text=${encodeURIComponent(c.whatsappMessage||'')}`;w.target='_blank';w.rel='noopener'}else if(w)w.addEventListener('click',()=>alert('Add your WhatsApp number in assets/js/config.js first.'));const t=document.querySelector('.menu-toggle'),m=document.querySelector('.mobile-menu');const close=()=>{m.classList.remove('open');m.setAttribute('aria-hidden','true');t.setAttribute('aria-expanded','false')};t?.addEventListener('click',()=>{const o=!m.classList.contains('open');m.classList.toggle('open',o);m.setAttribute('aria-hidden',String(!o));t.setAttribute('aria-expanded',String(o))});m?.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));const ob=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});document.querySelectorAll('.reveal').forEach(e=>ob.observe(e));const modal=document.getElementById('filmModal'),v=document.getElementById('filmVideo');document.getElementById('openFilm')?.addEventListener('click',()=>{modal.classList.add('open');modal.setAttribute('aria-hidden','false');v.play().catch(()=>{});document.body.style.overflow='hidden'});const cf=()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true');v.pause();document.body.style.overflow=''};document.getElementById('closeFilm')?.addEventListener('click',cf);modal?.addEventListener('click',e=>{if(e.target===modal)cf()});document.addEventListener('keydown',e=>{if(e.key==='Escape')cf()})})();
-// HERO SLIDESHOW
-const heroSlides = document.querySelectorAll('.hero-slide');
+(() => {
+  const config = window.NEC_CONFIG || {};
+  const year = document.getElementById('year');
+  if (year) year.textContent = new Date().getFullYear();
 
-if (heroSlides.length > 1) {
+  const whatsapp = document.getElementById('whatsappLink');
+  if (whatsapp && config.whatsappNumber) {
+    const message = config.whatsappMessage || 'Hello Never Ending Captures, I would like to enquire about a photography or film project.';
+    whatsapp.href = `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(message)}`;
+    whatsapp.target = '_blank';
+    whatsapp.rel = 'noopener noreferrer';
+  }
 
-  let heroCurrent = 0;
-
-  // Make sure the first photo is visible
-  heroSlides.forEach((slide, index) => {
-    slide.classList.toggle('active', index === 0);
+  const menuButton = document.querySelector('.menu-toggle');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  const closeMenu = () => {
+    mobileMenu?.classList.remove('open');
+    mobileMenu?.setAttribute('aria-hidden', 'true');
+    menuButton?.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+  };
+  menuButton?.addEventListener('click', () => {
+    const isOpen = !mobileMenu.classList.contains('open');
+    mobileMenu.classList.toggle('open', isOpen);
+    mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+    menuButton.setAttribute('aria-expanded', String(isOpen));
+    document.body.classList.toggle('menu-open', isOpen);
+  });
+  mobileMenu?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeMenu();
   });
 
-  // Change photo every 3 seconds
-  setInterval(() => {
+  const heroVideo = document.querySelector('.hero-video');
+  const heroPoster = document.querySelector('.hero-poster');
+  if (heroVideo) {
+    const showPoster = () => { if (heroPoster) heroPoster.style.display = 'block'; };
+    heroVideo.addEventListener('error', showPoster);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      heroVideo.pause();
+      showPoster();
+    } else {
+      const playPromise = heroVideo.play();
+      if (playPromise?.catch) playPromise.catch(showPoster);
+    }
+  }
 
-    const nextSlide =
-      (heroCurrent + 1) % heroSlides.length;
+  const revealItems = document.querySelectorAll('.intro, .section-top, .work-card, .interior-gallery figure, .capabilities > div, .corporate-copy, .corporate-art, .corporate-services > div, .film-content, .about-mark, .about-copy');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealItems.forEach(item => {
+      item.classList.add('reveal');
+      observer.observe(item);
+    });
+  } else {
+    revealItems.forEach(item => item.classList.add('visible'));
+  }
 
-    // Fade the next photo in first
-    heroSlides[nextSlide].classList.add('active');
-
-    // Wait for the smooth fade before hiding the previous photo
-    setTimeout(() => {
-      heroSlides[heroCurrent].classList.remove('active');
-      heroCurrent = nextSlide;
-    }, 1200);
-
-  }, 3000);
-}
+  const modal = document.getElementById('filmModal');
+  const film = document.getElementById('filmVideo');
+  const openFilm = document.getElementById('openFilm');
+  const closeFilm = () => {
+    modal?.classList.remove('open');
+    modal?.setAttribute('aria-hidden', 'true');
+    film?.pause();
+    document.body.style.overflow = '';
+  };
+  openFilm?.addEventListener('click', () => {
+    modal?.classList.add('open');
+    modal?.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    film?.play().catch(() => {});
+  });
+  document.getElementById('closeFilm')?.addEventListener('click', closeFilm);
+  modal?.addEventListener('click', event => {
+    if (event.target === modal) closeFilm();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeFilm();
+  });
+})();
